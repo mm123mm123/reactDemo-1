@@ -13,7 +13,7 @@ const NavWrapper = styled.nav`
         }
       }
 `;
-const Nav=()=>{
+const Nav = () => {
   return (
     <NavWrapper>
       <ul>
@@ -28,7 +28,7 @@ const Nav=()=>{
         </li>
       </ul>
     </NavWrapper>
-  )
-}
+  );
+};
 
 export default Nav;
