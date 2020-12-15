@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React from 'react';
+import Icon from './Icon';
 
-require('icons/money.svg');
-require('icons/labels.svg');
-require('icons/statistics.svg');
+
 const NavWrapper = styled.nav`
       box-shadow:0 0 3px rgba(0,0,0,0.25);
       ul{
@@ -12,13 +11,15 @@ const NavWrapper = styled.nav`
         li{
         width:33.3333%;
         padding:2px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        svg{
-          height:2em;
-          width:2em;
-        }
+          div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+              svg{
+              height:2em;
+              width:2em;
+            }
+          }
         }
       }
 `;
@@ -27,22 +28,28 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <svg>
-            <use xlinkHref='#labels'/>
-          </svg>
-          <Link to="/tags">标签</Link>
+          <Link to="/tags">
+            <div>
+              <Icon name="labels"/>
+              标签
+            </div>
+          </Link>
         </li>
         <li>
-          <svg >
-            <use xlinkHref='#money'/>
-          </svg>
-          <Link to="/money">记一笔</Link>
+          <Link to="/money">
+            <div>
+              <Icon name="money"/>
+              记一笔
+            </div>
+          </Link>
         </li>
         <li>
-          <svg>
-            <use xlinkHref='#statistics'/>
-          </svg>
-          <Link to="/statistics">统计</Link>
+          <Link to="/statistics">
+            <div>
+              <Icon name="statistics"/>
+              统计
+            </div>
+          </Link>
         </li>
       </ul>
     </NavWrapper>

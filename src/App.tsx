@@ -1,23 +1,14 @@
 import React from 'react';
 import { Route, HashRouter as Router, Switch, Redirect} from 'react-router-dom';
-import styled from 'styled-components';
-import Nav from 'components/Nav'
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height:100vh;
-`;
-const Main = styled.div`
-  flex-grow:1;
-  overflow: auto;
-`;
+import Money from './views/Money';
+import NoMatch from './views/NoMatch';
+import Statistics from './views/Statistics';
+import Tags from './views/Tags';
 
 
 function App() {
   return (
     <Router>
-      <Wrapper>
-        <Main>
           <Switch>
             <Route path="/money">
               <Money/>
@@ -33,30 +24,7 @@ function App() {
               <NoMatch/>
             </Route>
           </Switch>
-        </Main>
-        <Nav/>
-      </Wrapper>
     </Router>
-  );
-}
-
-function Money() {
-  return <h2>money</h2>;
-}
-
-function Tags() {
-  return <h2>tags</h2>;
-}
-
-function Statistics() {
-  return <h2>statistics</h2>;
-}
-
-function NoMatch() {
-  return (
-    <h3>
-      路径错误，请重新输入
-    </h3>
   );
 }
 
