@@ -24,7 +24,7 @@ const Wrapper = styled.section`
       }
     }
 `;
-const CategorySection = () => {
+const CategorySection: React.FC= () => {
   const categoryMap = {'-': '支出', '+': '收入'};
   type categoryMapKey=keyof typeof categoryMap;
   const [category, setCategory] = useState('-');
