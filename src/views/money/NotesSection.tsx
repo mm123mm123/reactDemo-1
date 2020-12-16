@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
 
-const Wrapper=styled.section`
+const Wrapper = styled.section`
   background: #f5f5f5;
   padding: 0 16px;
   font-size: 14px;
@@ -17,26 +17,31 @@ const Wrapper=styled.section`
       border: none;
     }
   }
-`
-const NotesSection: React.FC=()=>{
-  const [note,setNote]=useState('')
-  const refInput=React.useRef<HTMLInputElement>(null);
-  function updateNote(){
-    if(refInput.current!==null && refInput.current.value!==''){
-      setNote(refInput.current.value)
+`;
+type Props = {
+  value: string
+  onChange: (note: string) => void
+}
+const NotesSection: React.FC<Props> = (props) => {
+  const refInput = React.useRef<HTMLInputElement>(null);
+
+  function updateNote() {
+    if (refInput.current !== null && refInput.current.value !== '') {
+      props.onChange(refInput.current.value);
     }
   }
-  return(
+
+  return (
     <Wrapper>
       <label>
         <span>备注</span>
         <input type="text" placeholder="在这里添加备注"
                ref={refInput}
                onBlur={updateNote}
-               defaultValue={note}
+               defaultValue={props.value}
         />
       </label>
     </Wrapper>
-  )
-}
-export {NotesSection}
+  );
+};
+export {NotesSection};

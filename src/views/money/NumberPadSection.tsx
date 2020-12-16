@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
 
 const Wrapper = styled.section`
  display:flex;
@@ -49,8 +48,13 @@ const Wrapper = styled.section`
     }
   }
 `;
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutput] = useState('0');
+type Props = {
+  value: string
+  onChange: (number: string) => void
+}
+const NumberPadSection: React.FC<Props> = (props) => {
+  const output = props.value;
+  const _setOutput = (text: string) => props.onChange(text);
 
   function setOutput(text: string) {
     if (output.length < 16) {
