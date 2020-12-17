@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
+import {useTags} from '../useTags';
 
 function Tags() {
   const TagList = styled.ol`
@@ -36,15 +37,15 @@ function Tags() {
   align-items: center;
   flex-direction: column;
 `;
-  const [tags] = useState(['衣', '食', '住', '行']);
+  const {tags} = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(tag => (
-          <li key={tag}>
-            <Link to={'/tags/'+tag}>
+          <li key={tag.id}>
+            <Link to={'/tags/' + tag.name}>
               <span className='oneLine'>
-                {tag}
+                {tag.name}
               </span>
               <Icon name={'rightArrow'}/>
             </Link>

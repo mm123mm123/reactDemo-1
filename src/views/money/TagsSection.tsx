@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
+import {useTags} from '../../useTags';
 
 const Wrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;
@@ -22,33 +23,36 @@ const Wrapper = styled.section`
     margin-top: 8px;
   }
 `;
-type Props={
-  value: string[]
-  onChange:(tags:string[])=>void
+type Props = {
+  value: number[]
+  onChange: (tagIds: number[]) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const {tags,setTags} = useTags();
 
-  function onToggleTag(tag: string) {
-    if (selectedTags.indexOf(tag) >= 0) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
+
+  function onToggleTag(tagId: number) {
+    if (props.value.indexOf(tagId) >= 0) {
+      props.onChange(props.value.filter(t => t !== tagId));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...props.value, tagId]);
     }
   }
-  function addTag(){
-    const tagName=window.prompt('请输入标签名')
-    if(tagName){
-      props.onChange([...props.value,tagName])
+
+  function addTag() {
+    const tagName = window.prompt('请输入标签名');
+    if (tagName) {
+      setTags([...tags, {id:Math.random(),name:tagName}]);
     }
   }
+
   return (
     <Wrapper>
       <ol>
-        {props.value.map(tag => (
-          <li key={tag} onClick={() => onToggleTag(tag)}
-              className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}>
-            {tag}
+        {tags.map(tag => (
+          <li key={tag.id} onClick={() => onToggleTag(tag.id)}
+              className={props.value.indexOf(tag.id) >= 0 ? 'selected' : ''}>
+            {tag.name}
           </li>
         ))}
       </ol>

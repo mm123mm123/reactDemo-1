@@ -13,7 +13,7 @@ const MyLayout = styled(Layout)`
 
 function Money() {
   const [record, setRecord] = useState({
-      tags: [] as string[],
+      selectedTags: [] as number[],
       note: '',
       category: '-',
       number: '0'
@@ -24,7 +24,7 @@ function Money() {
   }
   return (
     <MyLayout>
-      <TagsSection value={record.tags} onChange={tags=>onChange({tags})}/>
+      <TagsSection value={record.selectedTags} onChange={selectedTags=>onChange({selectedTags})}/>
       <NotesSection value={record.note} onChange={note=>onChange({note})}/>
       <CategorySection value={record.category} onChange={category=>onChange({category})}/>
       <NumberPadSection value={record.number} onChange={number=>onChange({number})}/>
