@@ -21,7 +21,7 @@ function App() {
               <Statistics/>
             </Route>
             <Redirect exact from="/" to="/money"/>
-            <Route path="/tags/:tag" >
+            <Route path="/tags/:id" >
               <Tag/>
             </Route>
             <Route path="*">
