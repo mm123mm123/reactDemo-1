@@ -9,8 +9,9 @@ import {Button} from '../components/Button';
 
 
 const Tag: React.FC = () => {
-  // const {findTag} = useTags();
-  // let {id} = useParams<{ id: string }>();
+  const {findTag,updateTag} = useTags();
+  let {id} = useParams<{ id: string }>();
+  const tag = findTag(id);
   const Topbar = styled.header`
   display:flex;
   justify-content: space-between;
@@ -42,7 +43,8 @@ const Tag: React.FC = () => {
         <Icon/>
       </Topbar>
       <InputWrapper>
-        <Input name='标签名'/>
+        <Input name='标签名' value={tag.name}
+               onChange={(e)=>updateTag(id,{name:e.target.value})}/>
       </InputWrapper>
       <Center>
         <Button>删除标签</Button>
