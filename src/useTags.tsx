@@ -12,13 +12,25 @@ const useTags = () => {
   const findTag = (id: string) => {
     return tags.filter(tag => tag.id === parseInt(id))[0];
   };
+  const findIndex=(id: string)=>{
+    return tags.map(tag => tag.id).indexOf(findTag(id).id);
+  }
+  const cloneTags=()=>{
+    return JSON.parse(JSON.stringify(tags))
+  }
   const updateTag = (id: string, obj: { name: string }) => {
-    const clonedTags: { id: number, name: string }[] = JSON.parse(JSON.stringify(tags));
-    const index = clonedTags.map(tag => tag.id).indexOf(findTag(id).id);
+    const clonedTags = cloneTags();
+    const index = findIndex(id)
     clonedTags.splice(index, 1, {id: parseInt(id), name: obj.name});
     setTags(clonedTags);
   };
-  return {tags, setTags, findTag, updateTag};
+  const deleteTag=(id: string)=>{
+    const clonedTags = cloneTags();
+    const index = findIndex(id)
+    clonedTags.splice(index, 1);
+    setTags(clonedTags);
+  }
+  return {tags, setTags, findTag, updateTag,deleteTag};
 };
 
 export {useTags};

@@ -6,8 +6,7 @@ import {Link} from 'react-router-dom';
 import {useTags} from '../useTags';
 import {Button} from '../components/Button';
 
-function Tags() {
-  const TagList = styled.ol`
+const TagList = styled.ol`
   font-size: 16px; 
   background:white;
   > li{
@@ -26,12 +25,14 @@ function Tags() {
     }
   }
 `;
-  const Center = styled.div`
+const Center = styled.div`
   display:flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
+function Tags() {
+
   const {tags} = useTags();
   return (
     <Layout>

@@ -7,12 +7,7 @@ import styled from 'styled-components';
 import {Input} from '../components/Input';
 import {Button} from '../components/Button';
 
-
-const Tag: React.FC = () => {
-  const {findTag,updateTag} = useTags();
-  let {id} = useParams<{ id: string }>();
-  const tag = findTag(id);
-  const Topbar = styled.header`
+const Topbar = styled.header`
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -24,17 +19,23 @@ const Tag: React.FC = () => {
    width:1em
   }
 `;
-  const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   background:white;
   padding: 0 16px;
   margin-top: 8px;
 `;
-  const Center = styled.div`
+const Center = styled.div`
   display:flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
+
+const Tag: React.FC = () => {
+  const {findTag, updateTag, deleteTag} = useTags();
+  let {id} = useParams<{ id: string }>();
+  const tag = findTag(id);
+
   return (
     <Layout>
       <Topbar>
@@ -42,13 +43,18 @@ const Tag: React.FC = () => {
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
-      <InputWrapper>
-        <Input name='标签名' type="text" value={tag.name}
-               onChange={(e)=>updateTag(id,{name:e.target.value})}/>
-      </InputWrapper>
-      <Center>
-        <Button>删除标签</Button>
-      </Center>
+      {tag ?
+        <div>
+        <InputWrapper>
+          <Input name='标签名' type="text" value={tag.name}
+                 onChange={(e) => updateTag(id, {name: e.target.value})}/>
+        </InputWrapper>
+        <Center>
+          <Button onClick={() => deleteTag(id)}>删除标签</Button>
+        </Center>
+        </div>
+        : <Center><span>标签已删除</span></Center>
+      }
     </Layout>
   );
 };
