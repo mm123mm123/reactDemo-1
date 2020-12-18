@@ -43,7 +43,7 @@ const Tag: React.FC = () => {
         <Icon/>
       </Topbar>
       <InputWrapper>
-        <Input name='标签名' value={tag.name}
+        <Input name='标签名' type="text" value={tag.name}
                onChange={(e)=>updateTag(id,{name:e.target.value})}/>
       </InputWrapper>
       <Center>
