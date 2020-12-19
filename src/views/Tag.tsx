@@ -35,11 +35,13 @@ const Tag: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags();
   let {id} = useParams<{ id: string }>();
   const tag = findTag(id);
+  const back=()=>{
 
+  }
   return (
     <Layout>
       <Topbar>
-        <Icon name='leftArrow'/>
+        <Icon  name='leftArrow'/>
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
