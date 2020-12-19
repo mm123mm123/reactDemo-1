@@ -25,10 +25,16 @@ const useTags = () => {
     });
     setTags(newTags);
   };
+  const addTag=  ()=> {
+    const tagName = window.prompt('请输入标签名');
+    if (tagName) {
+      setTags([...tags, {id:createId(),name:tagName}]);
+    }
+  }
   const deleteTag = (id: string) => {
     setTags(tags.filter(tag=>tag.id!==parseInt(id)));
   };
-  return {tags, setTags, findTag, updateTag, deleteTag};
+  return {tags, setTags, findTag, updateTag, addTag,deleteTag};
 };
 
 export {useTags};

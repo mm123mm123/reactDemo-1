@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
 import {useTags} from '../../useTags';
-import {createId} from '../../lib/createId';
 
 const Wrapper = styled.section`
   background: #FFFFFF; padding: 12px 16px;
@@ -29,7 +28,7 @@ type Props = {
   onChange: (tagIds: number[]) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
-  const {tags,setTags} = useTags();
+  const {tags,addTag} = useTags();
 
 
   function onToggleTag(tagId: number) {
@@ -40,12 +39,6 @@ const TagsSection: React.FC<Props> = (props) => {
     }
   }
 
-  function addTag() {
-    const tagName = window.prompt('请输入标签名');
-    if (tagName) {
-      setTags([...tags, {id:createId(),name:tagName}]);
-    }
-  }
 
   return (
     <Wrapper>
