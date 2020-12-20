@@ -26,7 +26,7 @@ const Wrapper = styled.section`
 `;
 type Props = {
   value: string
-  onChange: (category: string) => void
+  onChange: (category: '+'|'-') => void
 }
 const CategorySection: React.FC<Props> = (props) => {
   const categoryMap = {'-': '支出', '+': '收入'};
@@ -36,7 +36,7 @@ const CategorySection: React.FC<Props> = (props) => {
       <ul>
         {Object.keys(categoryMap).map(c=> (
           <li key={c} className={props.value === c ? 'selected' : ''}
-              onClick={() => props.onChange(c)}>
+              onClick={() => props.onChange(c as categoryMapKey)}>
             {categoryMap[c as categoryMapKey]}
           </li>
         ))}

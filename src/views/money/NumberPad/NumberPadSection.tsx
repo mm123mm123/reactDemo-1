@@ -1,7 +1,9 @@
-import {Wrapper} from 'views/money/NumberPad/Wrapper'
+import {Wrapper} from 'views/money/NumberPad/Wrapper';
+
 type Props = {
   value: string
   onChange: (number: string) => void
+  onOK: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const output = props.value;
@@ -50,6 +52,9 @@ const NumberPadSection: React.FC<Props> = (props) => {
         break;
       case '清空':
         _setOutput('0');
+        break;
+      case 'OK':
+        props.onOK();
         break;
     }
   };

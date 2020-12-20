@@ -5,29 +5,35 @@ import styled from 'styled-components';
 import {NotesSection} from './money/NotesSection';
 import {CategorySection} from './money/CategorySection';
 import {NumberPadSection} from './money/NumberPad/NumberPadSection';
+import {useRecord} from '../Hooks/useRecord';
 
 const MyLayout = styled(Layout)`
   display:flex;
   flex-direction: column;
 `;
 
+const defaultValue={
+  selectedTags: [] as number[],
+  note: '',
+  category: '-',
+  number: '0'
+}
 function Money() {
-  const [record, setRecord] = useState({
-      selectedTags: [] as number[],
-      note: '',
-      category: '-',
-      number: '0'
-    }
-  );
-  const onChange=(obj: Partial<typeof record>)=>{
-    setRecord({...record,...obj})
-  }
+  const [newRecordItem, setNewRecord] = useState<record>(defaultValue as record);
+  const {updateRecord} = useRecord();
+  const onChange = (obj: Partial<typeof newRecordItem>) => {
+    setNewRecord({...newRecordItem, ...obj});
+  };
+  const submit = () => {
+    updateRecord(newRecordItem);
+    setNewRecord(defaultValue as record)
+  };
   return (
     <MyLayout>
-      <TagsSection value={record.selectedTags} onChange={selectedTags=>onChange({selectedTags})}/>
-      <NotesSection value={record.note} onChange={note=>onChange({note})}/>
-      <CategorySection value={record.category} onChange={category=>onChange({category})}/>
-      <NumberPadSection value={record.number} onChange={number=>onChange({number})}/>
+      <TagsSection value={newRecordItem.selectedTags} onChange={selectedTags => onChange({selectedTags})}/>
+      <NotesSection value={newRecordItem.note} onChange={note => onChange({note})}/>
+      <CategorySection value={newRecordItem.category} onChange={category => onChange({category})}/>
+      <NumberPadSection value={newRecordItem.number} onChange={number => onChange({number})} onOK={submit}/>
     </MyLayout>
   );
 }

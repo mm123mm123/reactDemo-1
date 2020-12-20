@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
-import {useTags} from '../useTags';
+import {useTags} from '../Hooks/useTags';
 import {Button} from '../components/Button';
 
 const TagList = styled.ol`

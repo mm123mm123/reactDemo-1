@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import {useParams, useHistory} from 'react-router-dom';
-import {useTags} from '../useTags';
+import {useTags} from '../Hooks/useTags';
 import Icon from '../components/Icon';
 import styled from 'styled-components';
 import {Input} from '../components/Input';
