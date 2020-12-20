@@ -1,12 +1,12 @@
-import {useEffect, useRef, useState} from 'react';
-import {createId} from './lib/createId';
+import {useCallback, useEffect, useState} from 'react';
+import {createId} from 'lib/createId';
+import {useUpdate} from './useUpdate';
 
 type tag = {
   id: number, name: string
 }
 const useTags = () => {
   const [tags, setTags] = useState<tag[]>([]);
-  let count = useRef(0);
   useEffect(() => {
     const storageTags = JSON.parse(localStorage.getItem('tags') || '[]');
     setTags(
@@ -18,15 +18,11 @@ const useTags = () => {
       ] : storageTags
     );
   }, []);
-  useEffect(() => {
-    count.current += 1;
-  });
-  useEffect(() => {
-    if (count.current > 1) {
-      localStorage.setItem('tags', JSON.stringify(tags));
-      localStorage.setItem('tagId', JSON.stringify(tags[tags.length - 1].id));
-    }
+  const saveTag = useCallback(() => {
+    localStorage.setItem('tags', JSON.stringify(tags));
   }, [tags]);
+
+  useUpdate(saveTag);
   const findTag = (id: string) => {
     return tags.filter(tag => tag.id === parseInt(id))[0];
   };
