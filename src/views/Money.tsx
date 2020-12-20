@@ -10,6 +10,9 @@ import {useRecord} from '../Hooks/useRecord';
 const MyLayout = styled(Layout)`
   display:flex;
   flex-direction: column;
+  .categorySectionUl{
+    background:#c4c4c4;
+  }
 `;
 
 const defaultValue={

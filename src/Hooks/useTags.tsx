@@ -16,7 +16,6 @@ const useTags = () => {
       storageTags.length === 0 ? defaultTags : storageTags
     );
   }, []);
-  console.log(tags);
   const saveTag = useCallback(() => {
     localStorage.setItem('tags', JSON.stringify(tags));
   }, [tags]);

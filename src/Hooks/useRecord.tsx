@@ -3,12 +3,8 @@ import {useUpdate} from './useUpdate';
 import {useTags} from './useTags';
 
 
-type recordWithTime = record & {
-  tagName: string[]
-  createAt: string
-}
+
 const useRecord = () => {
-  console.log('运行');
   const [records, setRecords] = useState<recordWithTime[]>([]);
   const {findTag} = useTags();
   useEffect(() => {setRecords(JSON.parse(localStorage.getItem('records') || '[]'));}, []);
