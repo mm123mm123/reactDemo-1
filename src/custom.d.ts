@@ -4,3 +4,7 @@ type record = {
   category: '-' | '+',
   number: string
 }
+
+type tag = {
+  id: number, name: string
+}

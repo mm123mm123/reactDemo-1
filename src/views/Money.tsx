@@ -25,8 +25,9 @@ function Money() {
     setNewRecord({...newRecordItem, ...obj});
   };
   const submit = () => {
-    updateRecord(newRecordItem);
-    setNewRecord(defaultValue as record)
+    if(updateRecord(newRecordItem)){
+      setNewRecord(defaultValue as record)
+    }
   };
   return (
     <MyLayout>
